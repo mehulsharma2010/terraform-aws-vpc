@@ -84,6 +84,10 @@ Check out these related projects.
 
 - [security_group](https://github.com/OT-CLOUD-KIT/terraform-aws-network-skeleton) - Terraform module for creating dynamic Security 
 
+##Additional Requirements
+----
+* Option to create NAT gateway for each AZ.
+
 ### Contributors
 
 |  [![Sudipt Sharma][sudipt_avatar]][sudipt_homepage]<br/>[Sudipt Sharma][sudipt_homepage] | [![Devesh Sharma][devesh_avataar]][devesh_homepage]<br/>[Devesh Sharma][devesh_homepage] |
