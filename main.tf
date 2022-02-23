@@ -51,16 +51,6 @@ module "PublicSubnets" {
   tags = var.tags
 }
 
-# resource "aws_instance" {
-#   ami           = "ami-04505e74c0741db8d"
-#   instance_type = "t2.micro"
-#   associate_public_ip_address  = var.status_public_ip
-#   key_name = var.key_pair
-#  # security_groups = var.security_group_id
-#   subnet_id  = module.PublicSubnets.ids
-  
-# }
-
 module "nat-gateway" {
   source  = "OT-CLOUD-KIT/nat-gateway/aws"
   version = "0.0.1"
