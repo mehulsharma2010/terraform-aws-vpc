@@ -4,15 +4,10 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "vpc_name" {
-  description = "Name of the VPC to be created"
-  type        = string
-  default     = "Staging-vpc"
-}
-
 variable "name" {
   description = "Name of the VPC to be created"
   type        = string
+  default     = "Staging-vpc"
 }
 
 variable "tags" {
