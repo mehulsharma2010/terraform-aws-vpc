@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_flow_log" "vpc_flow_logs" {
   count = var.enable_vpc_logs == true ? 1 : 0
-  log_destination      = var.logs_bucket
+  log_destination      = var.logs_bucket_arn
   log_destination_type = var.log_destination_type
   traffic_type         = var.traffic_type
   vpc_id               = aws_vpc.main.id
