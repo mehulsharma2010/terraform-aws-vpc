@@ -35,9 +35,9 @@ variable "logs_bucket" {
   description = "Name of bucket where we would be storing our logs"
 }
 
-# variable "logs_buckett" {
-#   description = "Name of bucket where we would be storing our logs"
-# }
+variable "logs_bucket_arn" {
+  description = "ARN of bucket where we would be storing vpc our logs"
+}
 
 variable "pvt_zone_name" {
   description = "Name of private zone"
@@ -83,32 +83,3 @@ variable "enable_deletion_protection" {
   type = bool
   default = false
 }
-
-
-# # OpenVPN instance
-
-# variable "ami" {
-#   type = string
-#   description = "Ami for instance"
-#   default = "ami-04505e74c0741db8d"
-# }
-
-# variable "instance_type" {
-#   type = string
-#   description = "Type of instance we want to create"
-#   default = "t2.micro"
-# }
-
-# variable "status_public_ip" {
-#   type = string
-#   description = "Want to assign public ip or not"
-#   default = true
-# }
-
-# variable "key_pair" {
-#   type = string
-#   description = "Pem key for ec2 instance"
-#   default = "NVirginia_vineetdhir"
-# }
-
-  
