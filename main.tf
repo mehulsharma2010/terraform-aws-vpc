@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 
   tags = merge(
     {
-      "Name" = format("%s", var.name)
+      "Name" = format("%s", ${var.name}-vpc)
     },
     var.tags,
   )
@@ -44,7 +44,7 @@ module "PublicSubnets" {
   source  = "OT-CLOUD-KIT/subnet/aws"
   version = "0.0.1"
   availability_zones = var.avaialability_zones
-  name = format("%s-pub-sn", var.name)
+  name = format("%s-pub", var.name)
   route_table_id = module.publicRouteTable.id
   subnets_cidr = var.public_subnets_cidr
   vpc_id      = aws_vpc.main.id
@@ -73,7 +73,7 @@ module "PrivateSubnets" {
   source  = "OT-CLOUD-KIT/subnet/aws"
   version = "0.0.1"
   availability_zones = var.avaialability_zones
-  name = format("%s-pvt-sn", var.name)
+  name = format("%s-pvt", var.name)
   route_table_id = module.privateRouteTable.id
   subnets_cidr = var.private_subnets_cidr
   vpc_id      = aws_vpc.main.id
