@@ -71,7 +71,7 @@ variable "traffic_type" {
 
 variable "enable_vpc_logs" {
   type = bool
-  default = true
+  default = false
 }
 
 variable "enable_alb_logging" {
