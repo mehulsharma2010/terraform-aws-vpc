@@ -111,7 +111,7 @@ module "public_web_security_group" {
 } 
 
 module "pub_alb" {
-  source                     = "git::git@github.com/OT-CLOUD-KIT/terraform-aws-alb.git?ref=output_arn" 
+  source   = "git::git@github.com:OT-CLOUD-KIT/terraform-aws-alb.git?ref=output_arn" 
   #version                    = "0.0.3"
   alb_name = format("%s-pub-alb", var.name)
   internal = false
