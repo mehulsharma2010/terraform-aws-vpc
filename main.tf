@@ -111,8 +111,8 @@ module "public_web_security_group" {
 } 
 
 module "pub_alb" {
-  source  = "OT-CLOUD-KIT/alb/aws"
-  version = "0.0.3"
+  source                     = "git::git@github.com/OT-CLOUD-KIT/terraform-aws-alb.git?ref=output_arn" 
+  #version                    = "0.0.3"
   alb_name = format("%s-pub-alb", var.name)
   internal = false
   logs_bucket = var.logs_bucket
