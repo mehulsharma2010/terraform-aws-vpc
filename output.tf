@@ -13,9 +13,9 @@ output "pvt_route_table_id" {
   value       = module.privateRouteTable.id
 }
 
-output "pub_alb_dns" {
-  value = module.pub_alb.dns_name
-}
+# output "pub_alb_dns" {
+#   value = module.pub_alb.dns_name
+# }
 
 output "pvt_hosted_zone_id" {
   description = "hosted zone id"
