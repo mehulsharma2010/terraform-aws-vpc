@@ -38,7 +38,7 @@ output "web_sg_id" {
   value = module.public_web_security_group.sg_id
 }
 
-output "alb_dns_name" {
+output "dns_name" {
   description = "DNS of ALB"
   value       = module.pub_alb.alb_dns_name
 }
