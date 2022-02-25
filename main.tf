@@ -35,7 +35,7 @@ module "publicRouteTable" {
   version = "0.0.1"
   cidr = "0.0.0.0/0"
   gateway_id  = aws_internet_gateway.igw.id
-  name        = format("%s-pub-rtb", var.name)
+  name        = format("%s-pub", var.name)
   vpc_id      = aws_vpc.main.id
   tags = var.tags
 }
@@ -64,7 +64,7 @@ module "privateRouteTable" {
   version = "0.0.1"
   cidr = "0.0.0.0/0"
   gateway_id  = module.nat-gateway.ngw_id
-  name        = format("%s-pvt-rtb", var.name)
+  name        = format("%s-pvt", var.name)
   vpc_id      = aws_vpc.main.id
   tags = var.tags
 }
