@@ -41,45 +41,45 @@ variable "logs_bucket_arn" {
 
 variable "pvt_zone_name" {
   description = "Name of private zone"
-  type = string
+  type        = string
 }
 
 variable "enable_dns_support" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "enable_dns_hostnames" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "instance_tenancy" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "log_destination_type" {
-  type = string
+  type    = string
   default = "s3"
 }
 
 variable "traffic_type" {
-  type = string
+  type    = string
   default = "ALL"
 }
 
 variable "enable_vpc_logs" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "enable_alb_logging" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "enable_deletion_protection" {
-  type = bool
+  type    = bool
   default = false
 }
