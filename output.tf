@@ -40,22 +40,22 @@ output "web_sg_id" {
 
 output "dns_name" {
   description = "DNS of ALB"
-  value       = module.pub_alb.dns_name
+  value       = module.pub_alb.alb_dns_name
 }
 
 output "aws_lb_arn" {
   description = "ARN of alb"
-  value       = module.pub_alb.aws_lb_arn
+  value       = module.pub_alb.alb_arn
 }
 
 output "alb_listener_arn" {
   description = "ARN of alb listener"
-  value       = module.pub_alb.alb_listener_arn
+  value       = module.pub_alb.alb_http_listener_arn
 }
 
 output "alb_listener1_arn" {
   description = "ARN of alb listener-1"
-  value       = module.pub_alb.alb_listener1_arn
+  value       = module.pub_alb.alb_https_listener_arn
 }
 
 output "route53_zone_id" {
