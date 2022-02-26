@@ -31,6 +31,10 @@ variable "avaialability_zones" {
   type        = list(string)
 }
 
+variable "public_web_sg_name" {
+  type = string
+}
+
 variable "logs_bucket" {
   description = "Name of bucket where we would be storing our logs"
 }
