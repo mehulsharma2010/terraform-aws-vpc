@@ -84,7 +84,7 @@ module "public_web_security_group" {
   source              = "OT-CLOUD-KIT/security-groups/aws"
   version             = "1.0.0"
   enable_whitelist_ip = true
-  name_sg             = "Public web Security Group"
+  name_sg             = var.public_web_sg_name
   vpc_id              = aws_vpc.main.id
   ingress_rule = {
     rules = {
