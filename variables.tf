@@ -83,6 +83,11 @@ variable "enable_alb_logging" {
   default = true
 }
 
+variable "alb_certificate_arn" {
+  description = "Cretificate arn for alb"
+  type = string
+}
+
 variable "enable_deletion_protection" {
   type    = bool
   default = false
