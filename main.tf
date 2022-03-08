@@ -121,6 +121,7 @@ module "pub_alb" {
   tags                       = var.tags
   enable_logging             = var.enable_alb_logging
   enable_deletion_protection = var.enable_deletion_protection
+  alb_certificate_arn        = var.alb_certificate_arn
 }
 
 resource "aws_route53_zone" "private_hosted_zone" {
