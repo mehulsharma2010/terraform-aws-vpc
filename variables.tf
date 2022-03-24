@@ -85,10 +85,40 @@ variable "enable_alb_logging" {
 
 variable "alb_certificate_arn" {
   description = "Cretificate arn for alb"
-  type = string
+  type        = string
 }
 
 variable "enable_deletion_protection" {
   type    = bool
   default = false
+}
+
+variable "enable_igw_publicRouteTable_PublicSubnets_resource" {
+  type        = bool
+  description = "This variable is used to create IGW, Public Route Table and Public Subnets"
+  default     = true
+}
+
+variable "enable_nat_privateRouteTable_PrivateSubnets_resource" {
+  type        = bool
+  description = "This variable is used to create NAT, Private Route Table and Private Subnets"
+  default     = true
+}
+
+variable "enable_public_web_security_group_resource" {
+  type        = bool
+  description = "This variable is to create Web Security Group"
+  default     = true
+}
+
+variable "enable_pub_alb_resource" {
+  type        = bool
+  description = "This variable is to create ALB"
+  default     = true
+}
+
+variable "enable_aws_route53_zone_resource" {
+  type        = bool
+  description = "This variable is to create Route 53 Zone"
+  default     = true
 }
