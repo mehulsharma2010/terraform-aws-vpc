@@ -4,10 +4,10 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "name" {
+variable "vpc_name" {
   description = "Name of the VPC to be created"
   type        = string
-  default     = "Staging-vpc"
+  default     = "testing-vpc"
 }
 
 variable "tags" {
@@ -121,4 +121,45 @@ variable "enable_aws_route53_zone_resource" {
   type        = bool
   description = "This variable is to create Route 53 Zone"
   default     = true
+}
+
+variable "igw_name" {
+  type        = string
+  description = "Internet Gateway name"
+}
+
+variable "pub_rt_name" {
+  type        = string
+  description = "Public route table name"
+}
+
+variable "pub_subnet_name" {
+  type        = string
+  description = "public subnet name"
+}
+
+variable "nat_name" {
+  type        = string
+  description = "Name of Nat Gateway"
+}
+
+variable "pvt_rt_ame" {
+  type        = string
+  description = "Name of Pvt Rpoute table"
+}
+
+variable "pvt_subnet_name" {
+  type        = string
+  description = "Name of private subnets"
+}
+
+variable "alb_name" {
+  type        = string
+  description = "Name of ALB"
+}
+
+variable "alb_type" {
+  type        = bool
+  description = "Type of ALB"
+  default     = false
 }

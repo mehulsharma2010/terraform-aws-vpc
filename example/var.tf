@@ -16,12 +16,6 @@ variable "statuses" {
   default     = ["ISSUED"]
 }
 
-variable "name" {
-  description = "Name of the VPC to be created"
-  type        = string
-  default     = "aws-os"
-}
-
 variable "cidr_block" {
   description = "The CIDR block for the VPC."
   type        = string
@@ -31,7 +25,7 @@ variable "cidr_block" {
 variable "vpc_name" {
   description = "Name of the VPC to be created"
   type        = string
-  default     = "vpc"
+  default     = "testing-vpc"
 }
 
 variable "tags" {
@@ -61,7 +55,6 @@ variable "avaialability_zones" {
 variable "pvt_zone_name" {
   description = "Name of private zone"
   type        = string
-  default     = "test.pvt.zone"
 }
 
 variable "logs_bucket" {
@@ -114,11 +107,5 @@ variable "enable_deletion_protection" {
 
 variable "public_web_sg_name" {
   type    = string
-  default = "testing-opensearch-sg"
-}
-
-variable "alb_certificate_arn" {
-  description = "Cretificate arn for alb"
-  type        = string
-  default     = "arn:aws:acm:ap-south-1:253942872677:certificate/90e82838-ba8a-446f-a0b2-47663506c320"
+  default = "staging-pub-sg"
 }

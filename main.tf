@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 
   tags = merge(
     {
-      "Name" = format("%s", "${var.name}-vpc")
+      "Name" = format("%s", var.vpc_name)
     },
     var.tags,
   )
@@ -25,7 +25,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = merge(
     {
-      "Name" = format("%s-igw", var.name)
+      "Name" = format("%s", var.igw_name)
     },
     var.tags,
   )
@@ -37,7 +37,7 @@ module "publicRouteTable" {
   version    = "0.0.1"
   cidr       = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.igw[count.index].id
-  name       = format("%s-pub", var.name)
+  name    = format("%s", var.pub_rt_name)
   vpc_id     = aws_vpc.main.id
   tags       = var.tags
 }
@@ -45,9 +45,9 @@ module "publicRouteTable" {
 module "PublicSubnets" {
   count              = var.enable_igw_publicRouteTable_PublicSubnets_resource == true ? 1 : 0
   source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "0.0.1"
+  version            = "0.0.2"
   availability_zones = var.avaialability_zones
-  name               = format("%s-pub", var.name)
+  subnet_name        = format("%s", var.pub_subnet_name)
   route_table_id     = module.publicRouteTable[count.index].id
   subnets_cidr       = var.public_subnets_cidr
   vpc_id             = aws_vpc.main.id
@@ -57,9 +57,9 @@ module "PublicSubnets" {
 module "nat-gateway" {
   count              = var.enable_nat_privateRouteTable_PrivateSubnets_resource == true ? 1 : 0
   source             = "OT-CLOUD-KIT/nat-gateway/aws"
-  version            = "0.0.1"
+  version            = "0.0.2"
   subnets_for_nat_gw = module.PublicSubnets[count.index].ids
-  vpc_name           = var.name
+  nat_name           = var.nat_name
   tags               = var.tags
 }
 
@@ -69,7 +69,7 @@ module "privateRouteTable" {
   version    = "0.0.1"
   cidr       = "0.0.0.0/0"
   gateway_id = module.nat-gateway[count.index].ngw_id
-  name       = format("%s-pvt", var.name)
+  name       = format("%s", var.pvt_rt_ame)
   vpc_id     = aws_vpc.main.id
   tags       = var.tags
 }
@@ -77,9 +77,9 @@ module "privateRouteTable" {
 module "PrivateSubnets" {
   count              = var.enable_nat_privateRouteTable_PrivateSubnets_resource == true ? 1 : 0
   source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "0.0.1"
+  version            = "0.0.2"
   availability_zones = var.avaialability_zones
-  name               = format("%s-pvt", var.name)
+  subnet_name        = format("%s", var.pvt_subnet_name)
   route_table_id     = module.privateRouteTable[count.index].id
   subnets_cidr       = var.private_subnets_cidr
   vpc_id             = aws_vpc.main.id
@@ -119,12 +119,13 @@ module "public_web_security_group" {
 
 module "pub_alb" {
   count                      = var.enable_pub_alb_resource == true ? 1 : 0
-  source                     = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-alb.git?ref=output_arn"
-  alb_name                   = format("%s-pub-alb", var.name)
-  internal                   = false
+  source                     = "OT-CLOUD-KIT/alb/aws"
+  version                    = "0.0.4"
+  alb_name                   = var.alb_name
+  internal                   = var.alb_type
   logs_bucket                = var.logs_bucket
   security_groups_id         = [module.public_web_security_group[count.index].sg_id]
-  subnets_id                 = module.PublicSubnets[count.index].ids
+  subnets_id                 = var.logs_bucket == false ? module.PublicSubnets[count.index].ids : module.PrivateSubnets[count.index].ids
   tags                       = var.tags
   enable_logging             = var.enable_alb_logging
   enable_deletion_protection = var.enable_deletion_protection
@@ -138,4 +139,3 @@ resource "aws_route53_zone" "private_hosted_zone" {
     vpc_id = aws_vpc.main.id
   }
 }
-

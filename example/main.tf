@@ -9,7 +9,7 @@ data "aws_acm_certificate" "acm" {
 
 module "network_skeleton" {
   source                                               = "../"
-  name                                                 = var.name
+  vpc_name                                             = var.vpc_name
   cidr_block                                           = var.cidr_block
   enable_dns_hostnames                                 = true
   enable_vpc_logs                                      = false
@@ -22,9 +22,16 @@ module "network_skeleton" {
   tags                                                 = var.tags
   public_web_sg_name                                   = var.public_web_sg_name
   alb_certificate_arn                                  = data.aws_acm_certificate.acm.arn
-  enable_igw_publicRouteTable_PublicSubnets_resource   = false
-  enable_nat_privateRouteTable_PrivateSubnets_resource = false
-  enable_public_web_security_group_resource            = false
-  enable_pub_alb_resource                              = false
-  enable_aws_route53_zone_resource                     = false
+  igw_name                                             = "testing-igw"
+  pub_rt_name                                          = "testing-pub-rt"
+  pub_subnet_name                                      = "testing-pub-subnet"
+  nat_name                                             = "testing-nat"
+  pvt_rt_ame                                           = "testing-pvt-rt"
+  pvt_subnet_name                                      = "testing-pvt-subnet"
+  alb_name                                             = "testing-alb"
+  enable_igw_publicRouteTable_PublicSubnets_resource   = true
+  enable_nat_privateRouteTable_PrivateSubnets_resource = true
+  enable_public_web_security_group_resource            = true
+  enable_pub_alb_resource                              = true
+  enable_aws_route53_zone_resource                     = true
 }
