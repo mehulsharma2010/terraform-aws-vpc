@@ -125,7 +125,7 @@ module "pub_alb" {
   internal                   = var.alb_type
   logs_bucket                = var.logs_bucket
   security_groups_id         = [module.public_web_security_group[count.index].sg_id]
-  subnets_id                 = var.logs_bucket == false ? module.PublicSubnets[count.index].ids : module.PrivateSubnets[count.index].ids
+  subnets_id                 = var.alb_type == false ? module.PublicSubnets[count.index].ids : module.PrivateSubnets[count.index].ids
   tags                       = var.tags
   enable_logging             = var.enable_alb_logging
   enable_deletion_protection = var.enable_deletion_protection
