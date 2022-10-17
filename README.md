@@ -1,4 +1,4 @@
-AWS Network Skeleton Terraform module
+AWS VPC Terraform module
 =====================================
 
 [![Opstree Solutions][opstree_avatar]][opstree_homepage]
@@ -8,7 +8,8 @@ AWS Network Skeleton Terraform module
   [opstree_homepage]: https://opstree.github.io/
   [opstree_avatar]: https://img.cloudposse.com/150x150/https://github.com/opstree.png
 
-Terraform module which creates network skeleton on AWS.
+Terraform module which creates VPC on AWS.
+also support secondary cidr.
 
 These types of resources are supported:
 
@@ -32,10 +33,12 @@ module "vpc" {
 
   name = "opstree"
   cidr_block = "10.0.0.0/24"
+  vpc_secondary_cidr = "12.0.0.0/24"
   instance_tenancy = "default"
   enable_dns_support = true
   enable_dns_hostnames = false
   enable_classiclink = false
+  enable_igw = false
 
   vpc_tags = {
     key1 = "value1"
@@ -66,6 +69,7 @@ Inputs
 |------|-------------|------|---------|:--------:|
 | name | The sting name append in tags | `string` | `"opstree"` | yes |
 | cidr_block | The CIDR block for the VPC. Default value is a valid CIDR  | `string` | `"10.0.0.0/24"` | no |
+| vpc_secondary_cidr | The Secondary CIDR block for the VPC. Default value is null  | `string` | `"12.0.0.0/24"` | no |
 | instance_tenancy | A tenancy option for instances launched into the VPC | `string` | `"default"` | no |
 | enable_dns_support | A dns support for instances launched into the VPC | `boolean` | `"true"` | no |
 | enable_dns_hostnames | A dns hostname for instances launched into the VPC | `boolean` | `"false"` | no |
@@ -86,14 +90,11 @@ Check out these related projects.
 
 ##Additional Requirements
 ----
-* Option to create NAT gateway for each AZ.
+* Option to create Internet gateway with VPC.
 
 ### Contributors
 
-|  [![Sudipt Sharma][sudipt_avatar]][sudipt_homepage]<br/>[Sudipt Sharma][sudipt_homepage] | [![Devesh Sharma][devesh_avataar]][devesh_homepage]<br/>[Devesh Sharma][devesh_homepage] |
-|---|---|
+|  [Nikhil Panchal][nikhil_homepage] |
+|---|
 
-  [sudipt_homepage]: https://github.com/iamsudipt
-  [sudipt_avatar]: https://img.cloudposse.com/75x75/https://github.com/iamsudipt.png
-  [devesh_homepage]: https://github.com/deveshs23
-  [devesh_avataar]: https://img.cloudposse.com/75x75/https://github.com/deveshs23.png
+  [nikhil_homepage]: https://github.com/pnikk7        
