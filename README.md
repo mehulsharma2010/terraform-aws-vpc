@@ -106,6 +106,10 @@ Output
 * [security-groups](https://registry.terraform.io/modules/OT-CLOUD-KIT/security-groups/aws/latest)
 * [alb](https://registry.terraform.io/modules/OT-CLOUD-KIT/alb/aws/latest)
 
+##Additional Requirements
+----
+* Option to create NAT gateway for each AZ.
+
 ### Contributors
 
 |  [![Sudipt Sharma][sudipt_avatar]][sudipt_homepage]<br/>[Sudipt Sharma][sudipt_homepage] | [![Devesh Sharma][devesh_avataar]][devesh_homepage]<br/>[Devesh Sharma][devesh_homepage] | [![Rishabh Sharma][rishabh_avatar]][rishabh_homepage]<br/>[Rishabh Sharma][rishabh_homepage]
@@ -117,3 +121,4 @@ Output
   [devesh_avataar]: https://img.cloudposse.com/75x75/https://github.com/deveshs23.png
   [rishabh_homepage]: https://www.linkedin.com/in/rishabh-sharma-b4a0b3152
   [rishabh_avatar]: https://img.cloudposse.com/75x75/https://github.com/rishabhhsharmaa.png
+
