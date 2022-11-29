@@ -120,7 +120,7 @@ module "public_web_security_group" {
 module "pub_alb" {
   count                      = var.enable_pub_alb_resource == true ? 1 : 0
   source                     = "OT-CLOUD-KIT/alb/aws"
-  version                    = "0.0.4"
+  version                    = "0.0.5"
   alb_name                   = var.alb_name
   internal                   = var.alb_type
   logs_bucket                = var.logs_bucket
