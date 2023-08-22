@@ -149,7 +149,7 @@ variable "pvt_rt_ame" {
 }
 
 variable "pvt_subnet_name" {
-  type        = string
+  type        = list(string)
   description = "Name of private subnets"
 }
 
