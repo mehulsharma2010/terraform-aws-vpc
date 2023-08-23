@@ -16,6 +16,13 @@ variable "tags" {
   default     = {}
 }
 
+
+variable "subnet_tags" {
+  description = "Additional tags for the VPC"
+  type        = map(string)
+  default     = {}
+}
+
 variable "public_subnets_cidr" {
   description = "CIDR list for public subnet"
   type        = list(string)
@@ -134,7 +141,7 @@ variable "pub_rt_name" {
 }
 
 variable "pub_subnet_name" {
-  type        = string
+  type        = list(string)
   description = "public subnet name"
 }
 
@@ -149,7 +156,7 @@ variable "pvt_rt_ame" {
 }
 
 variable "pvt_subnet_name" {
-  type        = string
+  type        = list(string)
   description = "Name of private subnets"
 }
 

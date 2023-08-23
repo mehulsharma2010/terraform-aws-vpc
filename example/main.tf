@@ -1,37 +1,33 @@
 provider "aws" {
-  region = var.region
-}
-
-data "aws_acm_certificate" "acm" {
-  domain   = var.acm_certificate_domain
-  statuses = var.statuses
+  region                  = "ap-south-1"
 }
 
 module "network_skeleton" {
   source                                               = "../"
   vpc_name                                             = var.vpc_name
-  cidr_block                                           = var.cidr_block
+  cidr_block                                           = "10.0.0.0/16"
   enable_dns_hostnames                                 = true
   enable_vpc_logs                                      = false
-  public_subnets_cidr                                  = var.public_subnets_cidr
-  pvt_zone_name                                        = var.pvt_zone_name
-  private_subnets_cidr                                 = var.private_subnets_cidr
-  avaialability_zones                                  = var.avaialability_zones
-  logs_bucket                                          = var.logs_bucket
-  logs_bucket_arn                                      = var.logs_bucket_arn
-  tags                                                 = var.tags
-  public_web_sg_name                                   = var.public_web_sg_name
-  alb_certificate_arn                                  = data.aws_acm_certificate.acm.arn
-  igw_name                                             = "testing-igw"
-  pub_rt_name                                          = "testing-pub-rt"
-  pub_subnet_name                                      = "testing-pub-subnet"
-  nat_name                                             = "testing-nat"
-  pvt_rt_ame                                           = "testing-pvt-rt"
-  pvt_subnet_name                                      = "testing-pvt-subnet"
-  alb_name                                             = "testing-alb"
+  pvt_zone_name                                        = "test.non-prod.net"
+  public_subnets_cidr                                  = ["10.0.1.0/24", "10.0.2.0/24"]
+  private_subnets_cidr                                 = ["10.0.16.0/20", "10.0.32.0/20", "10.0.48.0/24", "10.0.49.0/24", "10.0.50.0/24", "10.0.51.0/24"]
+  pvt_rt_ame                                           = var.pvt_rt_ame
+  pvt_subnet_name                                      = var.pvt_subnet_name
+  pub_subnet_name                                      = var.pub_subnet_name
+  pub_rt_name                                          = var.pub_rt_name
+  igw_name                                             = var.igw_name
+  nat_name                                             = var.nat_name
+  avaialability_zones                                  = ["ap-south-1a", "ap-south-1b"]
+  logs_bucket                                          = ""
+  logs_bucket_arn                                      = ""
+  tags                                                 = {"Environment" = "non-prod", "Owner" = "devops"}
+  subnet_tags                                          = {"Subnet" = "private", "App" = "EKS"}
+  public_web_sg_name                                   = "ns-web-sg"
+  alb_certificate_arn                                  = ""
+  alb_name                                             = var.alb_name
   enable_igw_publicRouteTable_PublicSubnets_resource   = true
   enable_nat_privateRouteTable_PrivateSubnets_resource = true
-  enable_public_web_security_group_resource            = true
-  enable_pub_alb_resource                              = true
-  enable_aws_route53_zone_resource                     = true
+  enable_public_web_security_group_resource            = false
+  enable_pub_alb_resource                              = false
+  enable_aws_route53_zone_resource                     = false
 }
