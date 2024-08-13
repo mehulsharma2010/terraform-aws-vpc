@@ -167,11 +167,11 @@ variable "alb_type" {
 variable "public_web_sg_cidr_80_port" {
   description = "CIDR block that will be allowed to access port 80"
   type        = list(string)
-  default     = "0.0.0.0/0" # Default allows access from anywhere
+  default     = ["0.0.0.0/0"] # Default allows access from anywhere
 }
 
 variable "public_web_sg_cidr_443_port" {
   description = "CIDR block that will be allowed to access port 443"
   type        = list(string)
-  default     = "0.0.0.0/0" # Default allows access from anywhere
+  default     = ["0.0.0.0/0"] # Default allows access from anywhere
 }
