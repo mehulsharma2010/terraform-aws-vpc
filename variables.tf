@@ -134,7 +134,7 @@ variable "pub_rt_name" {
 }
 
 variable "pub_subnet_name" {
-  type        = string
+  type        = list(string)
   description = "public subnet name"
 }
 
@@ -149,7 +149,7 @@ variable "pvt_rt_name" {
 }
 
 variable "pvt_subnet_name" {
-  type        = string
+  type        = slist(string)
   description = "Name of private subnets"
 }
 
