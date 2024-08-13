@@ -163,9 +163,3 @@ variable "alb_type" {
   description = "Type of ALB"
   default     = false
 }
-
-variable "enable_logging" {
-  description = "Enable Access logs in ALB"
-  type        = string
-  default     = true
-}
