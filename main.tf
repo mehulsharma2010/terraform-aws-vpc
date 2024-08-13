@@ -69,7 +69,7 @@ module "privateRouteTable" {
   version    = "0.0.1"
   cidr       = "0.0.0.0/0"
   gateway_id = module.nat-gateway[count.index].ngw_id
-  name       = format("%s", var.pvt_rt_ame)
+  name       = format("%s", var.pvt_rt_name)
   vpc_id     = aws_vpc.main.id
   tags       = var.tags
 }
