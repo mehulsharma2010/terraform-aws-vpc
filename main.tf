@@ -44,8 +44,8 @@ module "publicRouteTable" {
 
 module "PublicSubnets" {
   count              = var.enable_igw_publicRouteTable_PublicSubnets_resource == true ? 1 : 0
-  source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "beta0.1"
+  source             = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-vpc?ref=beta0.1"
+  # version            = "beta0.1"
   availability_zones = var.avaialability_zones
   subnet_name        = var.pub_subnet_name
   route_table_id     = module.publicRouteTable[count.index].id
@@ -76,8 +76,8 @@ module "privateRouteTable" {
 
 module "PrivateSubnets" {
   count              = var.enable_nat_privateRouteTable_PrivateSubnets_resource == true ? 1 : 0
-  source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "beta0.1"
+  source             = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-vpc?ref=beta0.1"
+  # version            = "beta0.1"
   availability_zones = var.avaialability_zones
   subnet_name        = var.pvt_subnet_name
   route_table_id     = module.privateRouteTable[count.index].id
