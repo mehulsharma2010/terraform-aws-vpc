@@ -101,7 +101,7 @@ module "public_web_security_group" {
           from_port    = 80
           to_port      = 80
           protocol     = "tcp"
-          cidr         = ["0.0.0.0/0"]
+          cidr         = var.public_web_sg_cidr_80_port
           source_SG_ID = []
         },
         {
@@ -109,7 +109,7 @@ module "public_web_security_group" {
           from_port    = 443
           to_port      = 443
           protocol     = "tcp"
-          cidr         = ["0.0.0.0/0"]
+          cidr         = var.public_web_sg_cidr_443_port
           source_SG_ID = []
         }
       ]
