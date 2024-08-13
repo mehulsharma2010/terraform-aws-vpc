@@ -163,3 +163,15 @@ variable "alb_type" {
   description = "Type of ALB"
   default     = false
 }
+
+variable "public_web_sg_cidr_80_port" {
+  description = "CIDR block that will be allowed to access port 80"
+  type        = string
+  default     = "0.0.0.0/0" # Default allows access from anywhere
+}
+
+variable "public_web_sg_cidr_443_port" {
+  description = "CIDR block that will be allowed to access port 443"
+  type        = string
+  default     = "0.0.0.0/0" # Default allows access from anywhere
+}
