@@ -143,7 +143,7 @@ variable "nat_name" {
   description = "Name of Nat Gateway"
 }
 
-variable "pvt_rt_ame" {
+variable "pvt_rt_name" {
   type        = string
   description = "Name of Pvt Rpoute table"
 }
