@@ -45,9 +45,9 @@ module "publicRouteTable" {
 module "PublicSubnets" {
   count              = var.enable_igw_publicRouteTable_PublicSubnets_resource == true ? 1 : 0
   source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "0.0.2"
+  version            = "beta0.1"
   availability_zones = var.avaialability_zones
-  subnet_name        = format("%s", var.pub_subnet_name)
+  subnet_name        = var.pub_subnet_name
   route_table_id     = module.publicRouteTable[count.index].id
   subnets_cidr       = var.public_subnets_cidr
   vpc_id             = aws_vpc.main.id
@@ -77,9 +77,9 @@ module "privateRouteTable" {
 module "PrivateSubnets" {
   count              = var.enable_nat_privateRouteTable_PrivateSubnets_resource == true ? 1 : 0
   source             = "OT-CLOUD-KIT/subnet/aws"
-  version            = "0.0.2"
+  version            = "beta0.1"
   availability_zones = var.avaialability_zones
-  subnet_name        = format("%s", var.pvt_subnet_name)
+  subnet_name        = var.pvt_subnet_name
   route_table_id     = module.privateRouteTable[count.index].id
   subnets_cidr       = var.private_subnets_cidr
   vpc_id             = aws_vpc.main.id
