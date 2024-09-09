@@ -1,94 +1,58 @@
-variable "cidr_block" {
-  description = "The CIDR block for the VPC."
-  type        = string
-  default     = "10.0.0.0/16"
+variable "enable_protected_subnet" {
+  description = "Flag to determine if protected subnets should be created"
+  type        = bool
+  default     = false
 }
 
-variable "name" {
-  description = "Name of the VPC to be created"
-  type        = string
-  default     = "Staging-vpc"
-}
+
+variable "vpc_id" {}
 
 variable "tags" {
-  description = "Additional tags for the VPC"
+  description = "A map of tags to be added to subnets"
   type        = map(string)
   default     = {}
 }
-
-variable "public_subnets_cidr" {
-  description = "CIDR list for public subnet"
-  type        = list(string)
-}
-
-variable "private_subnets_cidr" {
-  description = "CIDR list for private subnet"
-  type        = list(string)
-}
-
-variable "avaialability_zones" {
-  description = "List of avaialability zones"
-  type        = list(string)
-}
-
-variable "public_web_sg_name" {
-  type = string
-}
-
-variable "logs_bucket" {
-  description = "Name of bucket where we would be storing our logs"
-}
-
-variable "logs_bucket_arn" {
-  description = "ARN of bucket where we would be storing vpc our logs"
-}
-
-variable "pvt_zone_name" {
-  description = "Name of private zone"
+variable "vpc_id" {
+  description = "VPC ID"
   type        = string
 }
 
-variable "enable_dns_support" {
-  type    = bool
-  default = true
+variable "vpc_name" {
+  description = "VPC Name"
+  type        = string
+  default = "test"
+
 }
 
-variable "enable_dns_hostnames" {
-  type    = bool
-  default = true
+variable "protected_subnets_cidr" {
+  description = "CIDR blocks for protected subnets"
+  type        = list(string)
 }
 
-variable "instance_tenancy" {
-  type    = string
-  default = "default"
+variable "availability_zones" {
+  description = "Availability zones"
+  type        = list(string)
 }
 
-variable "log_destination_type" {
-  type    = string
-  default = "s3"
+variable "tags" {
+  description = "Tags to apply"
+  type        = map(string)
 }
 
-variable "traffic_type" {
-  type    = string
-  default = "ALL"
+variable "inbound_rules" {
+  type = map(object({
+    rule_number = number
+    protocol    = string
+    cidr_block  = string
+    action      = string
+  }))
 }
 
-variable "enable_vpc_logs" {
-  type    = bool
-  default = false
-}
-
-variable "enable_alb_logging" {
-  type    = bool
-  default = true
-}
-
-variable "alb_certificate_arn" {
-  description = "Cretificate arn for alb"
-  type = string
-}
-
-variable "enable_deletion_protection" {
-  type    = bool
-  default = false
+variable "outbound_rules" {
+  type = map(object({
+    rule_number = number
+    protocol    = string
+    cidr_block  = string
+    action      = string
+  }))
 }
