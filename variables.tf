@@ -12,10 +12,10 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-variable "vpc_id" {
-  description = "VPC ID"
-  type        = string
-}
+# variable "vpc_id" {
+#   description = "VPC ID"
+#   type        = string
+# }
 
 variable "vpc_name" {
   description = "VPC Name"
@@ -34,10 +34,10 @@ variable "availability_zones" {
   type        = list(string)
 }
 
-variable "tags" {
-  description = "Tags to apply"
-  type        = map(string)
-}
+# variable "tags" {
+#   description = "Tags to apply"
+#   type        = map(string)
+# }
 
 variable "inbound_rules" {
   type = map(object({
