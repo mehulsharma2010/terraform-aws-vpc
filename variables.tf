@@ -12,17 +12,7 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-# variable "vpc_id" {
-#   description = "VPC ID"
-#   type        = string
-# }
 
-variable "vpc_name" {
-  description = "VPC Name"
-  type        = string
-  default = "test"
-
-}
 
 variable "protected_subnets_cidr" {
   description = "CIDR blocks for protected subnets"
@@ -33,26 +23,32 @@ variable "availability_zones" {
   description = "Availability zones"
   type        = list(string)
 }
-
-# variable "tags" {
-#   description = "Tags to apply"
-#   type        = map(string)
-# }
-
-variable "inbound_rules" {
+variable "protected_nacl_inbound_rules" {
   type = map(object({
     rule_number = number
     protocol    = string
-    cidr_block  = string
     action      = string
+    cidr_block  = string
+    from_port   = optional(number)  # Optional
+    to_port     = optional(number)  # Optional
   }))
 }
 
-variable "outbound_rules" {
+variable "protected_nacl_outbound_rules" {
   type = map(object({
     rule_number = number
     protocol    = string
-    cidr_block  = string
     action      = string
+    cidr_block  = string
+    from_port   = optional(number)  # Optional
+    to_port     = optional(number)  # Optional
   }))
+}
+
+
+variable "protected_rt_name" {
+  type = string
+}
+variable "protected_subnet_name" {
+  type = string
 }
