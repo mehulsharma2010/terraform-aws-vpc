@@ -29,8 +29,8 @@ variable "protected_nacl_inbound_rules" {
     protocol    = string
     action      = string
     cidr_block  = string
-    from_port   = optional(number)  # Optional
-    to_port     = optional(number)  # Optional
+    from_port   = optional(number)  
+    to_port     = optional(number)
   }))
 }
 
@@ -40,8 +40,8 @@ variable "protected_nacl_outbound_rules" {
     protocol    = string
     action      = string
     cidr_block  = string
-    from_port   = optional(number)  # Optional
-    to_port     = optional(number)  # Optional
+    from_port   = optional(number)  
+    to_port     = optional(number)
   }))
 }
 
