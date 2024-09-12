@@ -163,3 +163,9 @@ variable "alb_type" {
   description = "Type of ALB"
   default     = false
 }
+
+variable "nacl_name" {
+  description = "The name of the Network ACL"
+  type        = string
+}
+
