@@ -140,59 +140,14 @@ resource "aws_route53_zone" "private_hosted_zone" {
   }
 }
 
-resource "aws_network_acl" "main" {
-  vpc_id = aws_vpc.main.id
+module "protected_subnet_nacl" {
+  count = var.enable_protected_subnet_nacl == true ? 1 : 0
 
-  tags = merge(
-    {
-      "Name" = format("%s", var.nacl_name)
-    },
-    var.tags,
-  )
-}
-
-resource "aws_network_acl_rule" "allow_inbound_http" {
-  network_acl_id = aws_network_acl.main.id
-  rule_number    = 100
-  egress         = false
-  protocol       = "tcp"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-  from_port      = 80
-  to_port        = 80
-}
-
-resource "aws_network_acl_rule" "allow_inbound_https" {
-  network_acl_id = aws_network_acl.main.id
-  rule_number    = 110
-  egress         = false
-  protocol       = "tcp"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-  from_port      = 443
-  to_port        = 443
-}
-
-resource "aws_network_acl_rule" "allow_outbound_all" {
-  network_acl_id = aws_network_acl.main.id
-  rule_number    = 100
-  egress         = true
-  protocol       = "-1"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-  from_port      = 0
-  to_port        = 0
-}
-
-resource "aws_subnet_network_acl_association" "public" {
-  count          = length(module.PublicSubnets.ids)
-  subnet_id      = element(module.PublicSubnets.ids, count.index)
-  network_acl_id = aws_network_acl.main.id
-}
-
-resource "aws_subnet_network_acl_association" "private" {
-  count          = length(module.PrivateSubnets.ids)
-  subnet_id      = element(module.PrivateSubnets.ids, count.index)
-  network_acl_id = aws_network_acl.main.id
+  source                       = "github.com/mehulsharma2010/terraform-aws-nacl//?ref=protected-subnet" 
+  vpc_id                       = var.vpc_id
+  protected_subnet_name         = var.protected_subnet_name
+  protected_nacl_inbound_rules  = var.protected_nacl_inbound_rules
+  protected_nacl_outbound_rules = var.protected_nacl_outbound_rules
+  tags                         = var.tags
 }
 
