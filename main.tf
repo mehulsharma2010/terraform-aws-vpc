@@ -140,14 +140,14 @@ resource "aws_route53_zone" "private_hosted_zone" {
   }
 }
 
-module "protected_subnet_nacl" {
-  count = var.enable_protected_subnet_nacl == true ? 1 : 0
+module "custom_nacl" {
+  count = var.enable_custom_nacl == true ? 1 : 0
 
-  source                       = "github.com/mehulsharma2010/terraform-aws-nacl//?ref=protected-subnet" 
-  vpc_id                       = var.vpc_id
-  protected_subnet_name         = var.protected_subnet_name
-  protected_nacl_inbound_rules  = var.protected_nacl_inbound_rules
-  protected_nacl_outbound_rules = var.protected_nacl_outbound_rules
-  tags                         = var.tags
+  source        = "github.com/mehulsharma2010/terraform-aws-nacl//?ref=custom_nacl" 
+  vpc_id        = var.vpc_id
+  subnet_id     = var.subnet_id
+  ingress_rules = var.ingress_rules
+  egress_rules  = var.egress_rules
+  tags          = var.tags
 }
 
